@@ -2,15 +2,12 @@
 include '/var/www/ctf/src/core.php';
 
 if (!empty($_POST)) {
-	$pdo = new PG_PDO;
-	$pdo->connect('postgres', 'ctfrpguser', 'pgpwd4ctf', 'ctf');
 	$login = $_POST['name'];
 	$password = $_POST['password'];
 	$result = $pdo->getData("select team_id, pass from login_data where login='$login'");
 	if ($result){
 		if (md5($password) == $result[0]['pass']) {
 			$pdo->disconnect();
-			$_SESSION['pdo'] = $pdo; 
 			$_SESSION['team_id'] = $result[0]['team_id'];
 			$_SESSION['team_name'] = $login;
 			header("refresh:0, url=/");
