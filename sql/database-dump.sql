@@ -21,9 +21,16 @@ CREATE TABLE public.teams (
     team_size integer NOT NULL,
     score integer,
     on_route boolean,
-    reg_date date,
-    current_task integer
+    reg_date date
 );
+
+CREATE TABLE public.teams_tasks
+(
+    team integer NOT NULL,
+    task integer NOT NULL,
+    status boolean
+);
+
 
 ALTER TABLE ONLY public.login_data
     ADD CONSTRAINT login_data_pkey PRIMARY KEY (team_id);
@@ -34,8 +41,14 @@ ALTER TABLE ONLY public.tasks
 ALTER TABLE ONLY public.teams
     ADD CONSTRAINT teams_pkey PRIMARY KEY (team_id);
 
-ALTER TABLE ONLY public.teams
-    ADD CONSTRAINT current_task FOREIGN KEY (current_task) REFERENCES public.tasks(task_id) ON UPDATE CASCADE ON DELETE CASCADE;
+ALTER TABLE ONLY public.teams_tasks
+    ADD CONSTRAINT teams_tasks_pkey PRIMARY KEY (team, task);
+
+ALTER TABLE ONLY public.teams_tasks
+    ADD CONSTRAINT team_no FOREIGN KEY (team) REFERENCES public.teams(team_id) ON UPDATE CASCADE ON DELETE CASCADE;
+
+ALTER TABLE ONLY public.teams_tasks
+    ADD CONSTRAINT task_no FOREIGN KEY (task) REFERENCES public.tasks(task_id) ON UPDATE CASCADE ON DELETE CASCADE;
 
 ALTER TABLE ONLY public.login_data
     ADD CONSTRAINT team_login FOREIGN KEY (team_id) REFERENCES public.teams(team_id) ON UPDATE CASCADE ON DELETE CASCADE;
@@ -74,15 +87,15 @@ INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('
 xyzqc{t3_qelrdeq_t3_k33a3a_lk3_lc_qe3p3}', 'abctf{w3_thought_w3_n33d3d_on3_of_th3s3}', false, NULL);
 INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('Неправильная криптография', 'Данное задание относится к категории Crypto. По легенде, был перехвачен сеанс связи, и командам нужно расшифровать переданные сообщения.', 'its_n0t_ab0ut_p4dd1ng', true, 'задание 1.txt');
 
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('zer0points', 3, 0, false, '2021-11-04', NULL);
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('flagbots', 3, 0, false, '2021-11-04', NULL);
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('over9000', 3, 0, false, '2021-11-05', NULL);
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('decrypters', 5, 0, false, '2021-11-11', NULL);
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('qword', 5, 0, false, '2021-11-12', NULL);
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('s3quence', 5, 0, false, '2021-11-13', NULL);
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('redcode', 7, 0, false, '2021-11-15', NULL);
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('watershell', 7, 0, false, '2021-11-18', NULL);
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task) VALUES ('h4ckers', 7, 0, false, '2021-11-19', NULL);
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('zer0points', 3, 0, false, '2021-11-04');
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('flagbots', 3, 0, false, '2021-11-04');
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('over9000', 3, 0, false, '2021-11-05');
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('decrypters', 5, 0, false, '2021-11-11');
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('qword', 5, 0, false, '2021-11-12');
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('s3quence', 5, 0, false, '2021-11-13');
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('redcode', 7, 0, false, '2021-11-15');
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('watershell', 7, 0, false, '2021-11-18');
+INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('h4ckers', 7, 0, false, '2021-11-19');
 
 
 INSERT INTO public.login_data (login, pass) VALUES ('zer0', 'zer01');

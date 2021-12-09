@@ -6,8 +6,8 @@ if (!empty($_POST)) {
   $count = pg_escape_string($_POST['count']);
   $login = pg_escape_string($_POST['login']);
   $password = pg_escape_string($_POST['password']);
-  $query = $pdo->query("INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date, current_task)
-    VALUES ('$name', $count, 0, false, now()::date, NULL);"
+  $query = $pdo->query("INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date)
+    VALUES ('$name', $count, 0, false, now()::date);"
   );
   if ($query) {
     $result = $pdo->query("INSERT INTO public.login_data (login, pass) VALUES ('$login', '$password');");
