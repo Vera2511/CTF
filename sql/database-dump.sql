@@ -82,9 +82,7 @@ INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('
 ', 'CTF{0k_u_HaVE_D0nE_1t}', true, 'j.rar');
 INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('Reverse !', 'Вы нашли файл со странными бинарными данными, что же это может быть ?
 ', 'CTF{0f4d0db3668dd58cabb9eb409657eaa8}', true, 'binary.txt');
-INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('Салат Цезарь', 'Должно быть лучший салат в мире. А вы можете расшифровать это для нас?
-
-xyzqc{t3_qelrdeq_t3_k33a3a_lk3_lc_qe3p3}', 'abctf{w3_thought_w3_n33d3d_on3_of_th3s3}', false, NULL);
+INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('Салат Цезарь', 'Должно быть лучший салат в мире. А вы можете расшифровать это для нас? xyzqc{t3_qelrdeq_t3_k33a3a_lk3_lc_qe3p3}', 'abctf{w3_thought_w3_n33d3d_on3_of_th3s3}', false, NULL);
 INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('Неправильная криптография', 'Данное задание относится к категории Crypto. По легенде, был перехвачен сеанс связи, и командам нужно расшифровать переданные сообщения.', 'its_n0t_ab0ut_p4dd1ng', true, 'задание 1.txt');
 
 INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('zer0points', 3, 0, false, '2021-11-04');

@@ -15,6 +15,9 @@ if ($_SESSION) {
 			    	if ($tf === False || $tf == '') {
 			    		$tf = 'Нет';
 			    	}
+			    	if ($tf === True) {
+			    		$tf = 'Да';
+			    	}
 			    	includeTemplate('lk.php', ['header' => $field, 'info' => $tf]);
 			    }
 					?>
