@@ -4,7 +4,7 @@ include '/var/www/ctf/src/core.php';
 if (!empty($_POST)) {
 	$login = $_POST['name'];
 	$password = $_POST['password'];
-	if ($login == 'ctftrainer' && md5($password) == '202cb962ac59075b964b07152d234b70') {
+	if ($login == ADMIN_LOGIN && md5($password) == ADMIN_PASSWORD) {
 		$_SESSION['isAdmin'] = True;
 		header("refresh:0, url=/");
 		exit;

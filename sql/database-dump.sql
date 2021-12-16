@@ -85,23 +85,23 @@ INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('
 INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('Салат Цезарь', 'Должно быть лучший салат в мире. А вы можете расшифровать это для нас? xyzqc{t3_qelrdeq_t3_k33a3a_lk3_lc_qe3p3}', 'abctf{w3_thought_w3_n33d3d_on3_of_th3s3}', false, NULL);
 INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('Неправильная криптография', 'Данное задание относится к категории Crypto. По легенде, был перехвачен сеанс связи, и командам нужно расшифровать переданные сообщения.', 'its_n0t_ab0ut_p4dd1ng', true, 'задание 1.txt');
 
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('zer0points', 3, 0, false, '2021-11-04');
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('flagbots', 3, 0, false, '2021-11-04');
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('over9000', 3, 0, false, '2021-11-05');
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('decrypters', 5, 0, false, '2021-11-11');
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('qword', 5, 0, false, '2021-11-12');
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('s3quence', 5, 0, false, '2021-11-13');
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('redcode', 7, 0, false, '2021-11-15');
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('watershell', 7, 0, false, '2021-11-18');
-INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('h4ckers', 7, 0, false, '2021-11-19');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('zer0points', 3, 0, false, '2021-11-04');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('flagbots', 3, 0, false, '2021-11-04');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('over9000', 3, 0, false, '2021-11-05');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('decrypters', 5, 0, false, '2021-11-11');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('qword', 5, 0, false, '2021-11-12');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('s3quence', 5, 0, false, '2021-11-13');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('redcode', 7, 0, false, '2021-11-15');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('watershell', 7, 0, false, '2021-11-18');
+-- INSERT INTO public.teams (team_name, team_size, score, on_route, reg_date) VALUES ('h4ckers', 7, 0, false, '2021-11-19');
 
 
-INSERT INTO public.login_data (login, pass) VALUES ('zer0', 'zer01');
-INSERT INTO public.login_data (login, pass) VALUES ('flagbot', 'flagbot2');
-INSERT INTO public.login_data (login, pass) VALUES ('overs', 'overs3');
-INSERT INTO public.login_data (login, pass) VALUES ('crypter', 'crypter4');
-INSERT INTO public.login_data (login, pass) VALUES ('queword', 'queword5');
-INSERT INTO public.login_data (login, pass) VALUES ('seqnce', 'seqnce6');
-INSERT INTO public.login_data (login, pass) VALUES ('redcoder', 'redcoder7');
-INSERT INTO public.login_data (login, pass) VALUES ('wshell', 'wshell8');
-INSERT INTO public.login_data (login, pass) VALUES ('hackerman', 'hackerman9');
+-- INSERT INTO public.login_data (login, pass) VALUES ('zer0', 'zer01');
+-- INSERT INTO public.login_data (login, pass) VALUES ('flagbot', 'flagbot2');
+-- INSERT INTO public.login_data (login, pass) VALUES ('overs', 'overs3');
+-- INSERT INTO public.login_data (login, pass) VALUES ('crypter', 'crypter4');
+-- INSERT INTO public.login_data (login, pass) VALUES ('queword', 'queword5');
+-- INSERT INTO public.login_data (login, pass) VALUES ('seqnce', 'seqnce6');
+-- INSERT INTO public.login_data (login, pass) VALUES ('redcoder', 'redcoder7');
+-- INSERT INTO public.login_data (login, pass) VALUES ('wshell', 'wshell8');
+-- INSERT INTO public.login_data (login, pass) VALUES ('hackerman', 'hackerman9');

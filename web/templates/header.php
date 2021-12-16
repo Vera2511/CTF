@@ -44,7 +44,7 @@
             &nbsp;<i class="bi bi-bug-fill"></i>&nbsp;CTF соревнования
           </span>
         </a>
-
+<?php if (!isset($install)) { ?>
       <ul class="nav nav-pills">
         <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Главная</a></li>
 <?php 
@@ -62,5 +62,5 @@ if ($_SESSION) {
 <?php } ?>
         <li class="nav-item">&nbsp;</li>
       </ul>
-
+<?php } ?>
     </header>

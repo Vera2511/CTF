@@ -34,12 +34,12 @@ if ($_SESSION && isset($_SESSION['isAdmin'])) {
 	            <h5 class="text-center">Админ-панель</h5>
 	            <nav>
 	                <div class="nav nav-tabs d-flex justify-content-evenly" id="nav-tab" role="tablist">
-	                    <button class="nav-link active" id="nav-team-tab" data-bs-toggle="tab" data-bs-target="#nav-team" type="button" role="tab" aria-controls="nav-team" aria-selected="true">Команды</button>
-	                    <button class="nav-link" id="nav-task-tab" data-bs-toggle="tab" data-bs-target="#nav-task" type="button" role="tab" aria-controls="nav-task" aria-selected="false">Задания</button>
+	                	<button class="nav-link active" id="nav-task-tab" data-bs-toggle="tab" data-bs-target="#nav-task" type="button" role="tab" aria-controls="nav-task" aria-selected="true">Задания</button>
+	                    <button class="nav-link" id="nav-team-tab" data-bs-toggle="tab" data-bs-target="#nav-team" type="button" role="tab" aria-controls="nav-team" aria-selected="false">Команды</button>
 	                </div>
 	            </nav>
 	            <div class="tab-content" id="nav-tabContent">
-					<div class="tab-pane fade show active" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
+					<div class="tab-pane fade" id="nav-team" role="tabpanel" aria-labelledby="nav-team-tab">
 						<table class="table text-center">
 							<thead>
 								<th>&nbsp;</th>
@@ -77,7 +77,7 @@ if ($_SESSION && isset($_SESSION['isAdmin'])) {
 							</tbody>
 						</table>
 					</div>
-					<div class="tab-pane fade" id="nav-task" role="tabpanel" aria-labelledby="nav-task-tab">
+					<div class="tab-pane fade show active" id="nav-task" role="tabpanel" aria-labelledby="nav-task-tab">
 						<table class="table text-center">
 							<thead>
 								<th>&nbsp;</th>
