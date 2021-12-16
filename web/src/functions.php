@@ -36,18 +36,17 @@ function getTask($id, $pdo) {
     $taskCount = count($tasks);
     $finishedTasks = $pdo->getData("select task from teams_tasks where team = $id and status");
     if (!$finishedTasks) {
-        return $tasks[rand(1, $taskCount)];
+        return $tasks[rand(0, $taskCount-1)];
     }
     foreach ($finishedTasks as $key => $value) {
         $finishedTasks[$key] = $finishedTasks[$key]['task'];
     }
-    // return $finishedTasks;
     if (count($finishedTasks) == $taskCount) {
         return false;
     }
-    $taskNumber = $tasks[rand(1, $taskCount)];
+    $taskNumber = $tasks[rand(0, $taskCount-1)];
     while (array_search($taskNumber, $finishedTasks) !== false) {
-        $taskNumber = $tasks[rand(1, $taskCount)];
+        $taskNumber = $tasks[rand(0, $taskCount-1)];
     }
     return $taskNumber;
 }

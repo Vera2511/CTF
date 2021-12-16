@@ -2,12 +2,13 @@
 include '/var/www/ctf/src/core.php';
 includeTemplate('header.php', ['title' => 'Установка приложения', '_SESSION' => $_SESSION, 'install' => true]);
 if (!empty($_POST)) {
+	$mail = pg_escape_string($_POST['mail']);
 	$login = pg_escape_string($_POST['login']);
 	$password = pg_escape_string($_POST['password']);
 	$confirm = pg_escape_string($_POST['confirm']);
 	if ($password == $confirm) {
 		$pass = md5($password);
-		$properties = "<?php\ndefine('ADMIN_LOGIN', '$login');\ndefine('ADMIN_PASSWORD', '$pass');";
+		$properties = "<?php\ndefine('ADMIN_MAIL', '$mail');\ndefine('ADMIN_LOGIN', '$login');\ndefine('ADMIN_PASSWORD', '$pass');";
 		$file = fopen($_SERVER['DOCUMENT_ROOT'] . '/src/adminProperties.php', 'w');
 		$fw = fwrite($file, $properties);
 		if ($fw) {
@@ -20,6 +21,10 @@ if (!empty($_POST)) {
 
    <form method="post" class="container col-3 text-center ">
       <h2 class="h4 mb-3 fw-normal">Создание администратора</h1>
+      <div class="form-floating">
+        <input type="email" class="form-control" id="floatingInput" placeholder="Почта для связи" name='mail' required>
+        <label for="floatingInput">Почта для связи</label>
+      </div>
       <div class="form-floating">
         <input type="text" class="form-control" id="floatingInput" placeholder="Логин администратора" name='login' required>
         <label for="floatingInput">Логин администратора</label>

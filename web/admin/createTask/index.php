@@ -1,3 +1,4 @@
+
 <?php
 include '/var/www/ctf/src/core.php';
 if ($_SESSION && isset($_SESSION['isAdmin'])) {
