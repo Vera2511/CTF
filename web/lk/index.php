@@ -21,10 +21,16 @@ if ($_SESSION) {
 			    	includeTemplate('lk.php', ['header' => $field, 'info' => $tf]);
 			    }
 					?>
+
 			</div>
+		</div>
+		<br />
+		<div class="text-center">
+      <button onclick="location.href = '/lk/changepass'" class="btn btn-primary btn-lg p-4">Сменить пароль</button>
+    </div>
 
 <?php
-includeTemplate('footer.php', ['gray' => True]);
+includeTemplate('footer.php');
 } else {
 	header("refresh:2, url=/login/");
 	echo 'need login';
