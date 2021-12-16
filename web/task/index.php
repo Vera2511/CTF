@@ -5,16 +5,26 @@ $id = $_SESSION['team_id'];
 $taskNumber = $pdo->getData("SELECT task FROM teams_tasks WHERE team = $id AND NOT status");
 if (!$taskNumber) {
   $taskNumber = getTask($id, $pdo);
-  $pdo->query("INSERT INTO teams_tasks (team, task, status) VALUES ($id, $taskNumber, false)");
-  $pdo->query("UPDATE teams SET on_route = true WHERE team_id = $id");
+  if ($taskNumber === false) {
+    $taskInfo = ['task_id' => 0, 
+    'task_name' => 'Задания закончились :(',
+    'descr' => 'К сожалению, в базе не осталось доступных заданий. Подождите несколько дней, пока мы добавим новые или обратитесь к администрации по адресу ctftrainer@example.com',
+    'is_file' => false,
+    'filename' => null];
+  } else {
+    $pdo->query("INSERT INTO teams_tasks (team, task, status) VALUES ($id, $taskNumber, false)");
+    $pdo->query("UPDATE teams SET on_route = true WHERE team_id = $id");
+  }
 } else {
   $taskNumber = $taskNumber[0]['task'];
 }
-$taskInfo = $pdo->getData("SELECT * FROM tasks where task_id = $taskNumber")[0];
-// if (!$taskInfo) {
-// 	header("refresh:0, url=/");
-// 	exit;
-// }
+if (!isset($taskInfo)) {
+  $taskInfo = $pdo->getData("SELECT * FROM tasks where task_id = $taskNumber")[0];
+}
+if (!$taskInfo) {
+	header("refresh:0, url=/");
+	exit;
+}
 if ($taskNumber == 4) {
 	$description = explode(' ', $taskInfo['descr']);
   $desc = '';
@@ -51,6 +61,8 @@ if (isset($error)) {
     <div class="card-body">
       <h2 class="h2"><?=$taskInfo['task_name']?></h2>
       <p><?=$desc?></p>
+<?php
+if ($taskInfo['task_id'] != 0) { ?>
       <p><?=isset($task) ? $task : ''?></p>
       <?php if ($taskInfo['is_file']) { ?>
       <a href='/download?filename=<?=$taskInfo['filename']?>'><?=$taskInfo['filename']?></a> 
@@ -61,6 +73,9 @@ if (isset($error)) {
     <input class="form-control" id="answer" name="answer" required>
     <label for="answer">Ответ: </label>
     <button class="w-100 btn btn-lg btn-primary col-md-6 my-2" type="submit">Отправить</button>
+  <?php } else { ?>
+    <button onclick="location.href = '/'" class="w-100 btn btn-lg btn-primary col-md-6 my-2" type="submit">Вернуться на главную</button>
+  <?php } ?>
   </form>
 </main>
 

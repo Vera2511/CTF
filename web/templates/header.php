@@ -49,8 +49,10 @@
         <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Главная</a></li>
 <?php 
 if ($_SESSION) {
+  if (!isset($_SESSION['isAdmin'])) {
 ?>
         <li class="nav-item"><a href="/lk/" class="nav-link" aria-current="page"> <i class="bi bi-person-fill"></i> Личный кабинет</a></li>
+      <?php } ?>
         <li class="nav-item"><a href="/?logout=1" class="nav-link active"><i class="bi bi-door-open-fill"></i> Выйти</a></li>
 <?php
 } else {

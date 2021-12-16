@@ -1,13 +1,14 @@
 <?php
 include '/var/www/ctf/src/core.php';
 includeTemplate('header.php', ['title' => 'Главная', '_SESSION' => $_SESSION]);
-if ($_SESSION) {
-$id = $_SESSION['team_id'];
-$onRoute = $pdo->getData("SELECT on_route FROM teams WHERE team_id = $id")[0]['on_route'];
-}
-$top1 = $pdo->getData("select top_score(3) limit 3");
-$top2 = $pdo->getData("select top_score(5) limit 3");
-$top3 = $pdo->getData("select top_score(7) limit 3");
+if (!isset($_SESSION['isAdmin'])) {
+	if ($_SESSION) {
+	$id = $_SESSION['team_id'];
+	$onRoute = $pdo->getData("SELECT on_route FROM teams WHERE team_id = $id")[0]['on_route'];
+	}
+	$top1 = $pdo->getData("select top_score(3) limit 3");
+	$top2 = $pdo->getData("select top_score(5) limit 3");
+	$top3 = $pdo->getData("select top_score(7) limit 3");
 
 ?>
 <main class="container-xxl">
@@ -109,4 +110,7 @@ if (isset($onRoute)) {
         </div>
 </main>
 <?php
+} else {
+	header('refresh:0, url=/admin');
+}
 includeTemplate('footer.php');

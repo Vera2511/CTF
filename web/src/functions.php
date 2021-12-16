@@ -29,18 +29,25 @@ function file_force_download($file)
 }
 
 function getTask($id, $pdo) {
-    $taskCount = $pdo->getData("select count(*) as count from tasks")[0]['count'];
+    $tasks = $pdo->getData("select task_id as id from tasks");
+    foreach ($tasks as $key => $task) {
+        $tasks[$key] = $tasks[$key]['id'];
+    }
+    $taskCount = count($tasks);
     $finishedTasks = $pdo->getData("select task from teams_tasks where team = $id and status");
     if (!$finishedTasks) {
-        return rand(1, $taskCount);
+        return $tasks[rand(1, $taskCount)];
     }
     foreach ($finishedTasks as $key => $value) {
         $finishedTasks[$key] = $finishedTasks[$key]['task'];
     }
     // return $finishedTasks;
-    $taskNumber = rand(1, $taskCount);
+    if (count($finishedTasks) == $taskCount) {
+        return false;
+    }
+    $taskNumber = $tasks[rand(1, $taskCount)];
     while (array_search($taskNumber, $finishedTasks) !== false) {
-        $taskNumber = rand(1, $taskCount);
+        $taskNumber = $tasks[rand(1, $taskCount)];
     }
     return $taskNumber;
 }
