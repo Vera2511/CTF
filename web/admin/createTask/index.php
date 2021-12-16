@@ -8,20 +8,23 @@ if ($_SESSION && isset($_SESSION['isAdmin'])) {
 		$descr = pg_escape_string($_POST['descr']);
 		$answer = pg_escape_string($_POST['answer']);
 
-		if (!empty($_FILES)) {
+		if (!isset($_FILES['file'])) {
 			$filename = $_FILES['file']['name'];
 			if (move_uploaded_file($_FILES['file']['tmp_name'], $url . "$filename")) {
 	 			$pdo->query("INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('$title', '$descr', '$answer', true, '$filename');");
+	 			header("refresh:0,url=/admin");
 	 		}
 		} else {
-			$pdo->query("INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('$title', '$descr', '$answer', false, NULL);");
+			if ($pdo->query("INSERT INTO public.tasks (task_name, descr, answer, is_file, filename) VALUES ('$title', '$descr', '$answer', false, NULL);")) {
+				header("refresh:0,url=/admin");
+			}
 		}
 	}
 
 
 	?>
 	   <form method="post" enctype="multipart/form-data" class="container col-3 text-center ">
-	      <h1 class="h3 mb-3 fw-normal">Добавить задание <?=var_dump($_POST)?> <?=var_dump($_FILES)?> <?=$error?></h1>
+	      <h1 class="h3 mb-3 fw-normal">Добавить задание</h1>
 	      <div class="form-floating">
 	        <input type="text" class="form-control" id="floatingInput" placeholder="Заголовок" name='name' required>
 	        <label for="floatingInput">Заголовок</label>

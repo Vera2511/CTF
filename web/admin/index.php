@@ -5,13 +5,19 @@ if ($_SESSION && isset($_SESSION['isAdmin'])) {
 
 	$teams = $pdo->getData('SELECT teams.team_id as id, login as "Логин", team_name as "Название команды", team_size as "Количество игроков", reg_date as "Дата регистрации", score as "Счет" FROM teams
 		INNER JOIN login_data ON login_data.team_id = teams.team_id ORDER BY teams.team_id');
-	$tasks = $pdo->getData('SELECT task_id as id, task_name as "Заголовок", descr as "Описание", answer as "Ответ" FROM tasks');
+	$tasks = $pdo->getData('SELECT task_id as id, task_name as "Заголовок", descr as "Описание", answer as "Ответ", is_file, filename as "Файл" FROM tasks');
 	$teamFields = array_keys($teams[0]);
 	$taskFields = array_keys($tasks[0]);
-
+	array_pop($taskFields);
+	array_pop($taskFields);
 	if (isset($_POST['deleteTask'])) {
+		$url = $_SERVER['DOCUMENT_ROOT'] . "/assets/uploads/";
 		$id = pg_escape_string($_POST['deleteTask']);
+		$filename = $pdo->getData("SELECT filename FROM tasks WHERE task_id = $id")[0]['filename'];
 		$pdo->query("DELETE FROM tasks WHERE task_id = $id");
+		if ($filename) {
+			exec("rm -rf $url$filename");
+		}
 		header("refresh:0, url=/admin");
 	}
 	if (isset($_POST['deleteTeam'])) {
@@ -83,6 +89,7 @@ if ($_SESSION && isset($_SESSION['isAdmin'])) {
 									?>
 								<th><?=$field?></th>
 								<?php } ?>
+								<th>Файл</th>
 							</thead>
 							<tbody>
 	<?php 
@@ -103,7 +110,12 @@ if ($_SESSION && isset($_SESSION['isAdmin'])) {
 									}
 									?>
 									<td><?=$task[$field]?></td>
-								<?php } ?>
+								<?php }
+								if ($task['is_file']) { ?>
+									<td><a href="/download?filename=<?=$task['Файл']?>"><?=$task['Файл']?></a></td>
+								<?php } else {
+									echo '<td>Нет</td>';
+								} ?>
 								</tr>
 	<?php } ?>
 							</tbody>
